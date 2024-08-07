@@ -1,0 +1,129 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func lengthOfLongestSubstring(s string) int {
+	var lengthStr int = len(s)
+	// length_search := 1
+	max_int := 1
+	// var bannedList map[string]bool = make(map[string]bool)
+	// tmpStrLongestStreak := ""
+	// bannedList := make(map[string]bool)
+	// for true {
+	// 	fmt.Printf("\n\n########Current loop-%v\n", length_search)
+	// 	for i := 0; i < lengthStr; i++ {
+	// 		tmp_end_bound := length_search
+	// 		if i+length_search >= lengthStr {
+	// 			tmp_end_bound = lengthStr - 1 - i
+	// 		}
+	// 		// max idx = 4
+	// 		// lengthsearch= 2
+	// 		// i = 3 ... 3 +2 = 5...
+	// 		// end idx = lengthStr - 1 - index = 5 - 1 - 3 = 1
+	// 		tmpStr := s[i : i+tmp_end_bound]
+	// 		fmt.Printf("Current string:%v\n", tmpStr)
+	// 		// tmpInt := strings.Count(tmpStr, key)
+	// 		// if(tmpInt)
+	// 		// if len(tmpStr) > len(tmpStrLongestStreak) {
+
+	// 		// }
+	// 		// tmpInt := strings.Count(s, tmpStr)
+	// 		// if tmpInt == 1 {
+	// 		// 	fmt.Printf("TMPStr:%v, SubFound:%v\n", tmpStr, tmpInt)
+	// 		// 	fmt.Printf("bannedList: %v\n", bannedList)
+	// 		// 	// if bannedList[tmpStr] {
+	// 		// 	// 	continue
+	// 		// 	// }
+	// 		// 	for key := range bannedList {
+	// 		// 		nBanWordExisted := strings.Count(tmpStr, key)
+	// 		// 		if nBanWordExisted > 0 {
+	// 		// 			fmt.Printf("banned word found in TMPStr: %v\n", tmpStr)
+	// 		// 			continue
+	// 		// 		}
+	// 		// 	}
+	// 		// 	bannedList[tmpStr] = true
+	// 		// 	if length_search > max_int {
+	// 		// 		max_int = length_search
+	// 		// 	}
+	// 		// }
+	// 	}
+	// 	length_search += 1
+	// 	if length_search == lengthStr {
+	// 		break
+	// 	}
+	// }
+	currIdx := 0
+	var arrayStreak []string
+	currLongestStreak := ""
+	for true {
+		fmt.Printf("\n\n########Current loop-%v\n", currIdx)
+		for i := currIdx; i < lengthStr; i++ {
+
+			tmpStr := s[i : i+1]
+
+			tmpInt := strings.Count(currLongestStreak, tmpStr)
+			if tmpInt > 0 {
+				arrayStreak = append(arrayStreak, currLongestStreak)
+				currLongestStreak = ""
+				// currIdx = lengthStr
+				// currIdx++
+				break
+			} else {
+				currLongestStreak += tmpStr
+			}
+
+			// if len(currLongestStreak) < 1 {
+			// 	currLongestStreak += tmpStr
+			// }
+
+			fmt.Printf("Current string:%v\n", tmpStr)
+			// tmpInt := strings.Count(tmpStr, key)
+			// if(tmpInt)
+			// if len(tmpStr) > len(tmpStrLongestStreak) {
+
+			// }
+			// tmpInt := strings.Count(s, tmpStr)
+			// if tmpInt == 1 {
+			// 	fmt.Printf("TMPStr:%v, SubFound:%v\n", tmpStr, tmpInt)
+			// 	fmt.Printf("bannedList: %v\n", bannedList)
+			// 	// if bannedList[tmpStr] {
+			// 	// 	continue
+			// 	// }
+			// 	for key := range bannedList {
+			// 		nBanWordExisted := strings.Count(tmpStr, key)
+			// 		if nBanWordExisted > 0 {
+			// 			fmt.Printf("banned word found in TMPStr: %v\n", tmpStr)
+			// 			continue
+			// 		}
+			// 	}
+			// 	bannedList[tmpStr] = true
+			// 	if length_search > max_int {
+			// 		max_int = length_search
+			// 	}
+			// }
+		}
+		currIdx++
+
+		if currIdx >= lengthStr {
+			break
+		}
+	}
+	fmt.Println(arrayStreak)
+
+	for idx := range arrayStreak {
+		if max_int < len(arrayStreak[idx]) {
+			max_int = len(arrayStreak[idx])
+		}
+	}
+
+	return max_int
+}
+func main() {
+	s1 := "abcabcbb"
+	jum := lengthOfLongestSubstring(s1)
+
+	fmt.Printf("Jum:%v", jum)
+}
